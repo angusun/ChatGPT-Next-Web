@@ -132,11 +132,7 @@ const useHasHydrated = () => {
 };
 
 const useInitUser = () => {
-  const [user, login, getInfo] = useUserStore((state) => [
-    state.user,
-    state.login,
-    state.getInfo,
-  ]);
+  const [user, getInfo] = useUserStore((state) => [state.user, state.getInfo]);
   useEffect(() => {
     if (user.username) {
       console.log("页面初始化，获取User", user);
