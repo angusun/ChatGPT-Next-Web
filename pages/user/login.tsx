@@ -14,7 +14,7 @@ import CopyIcon from "../../app/icons/copy.svg";
 import UserIcon from "../../app/icons/chat.svg";
 import axios from "axios";
 import md5 from "md5";
-import { setCookie } from "./utils";
+import { setCookie } from "../../common/utils";
 
 export interface LoginParams {
   username: string;

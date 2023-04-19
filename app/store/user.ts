@@ -3,7 +3,7 @@ import axios from "axios";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import Router from "next/router";
-import { eraseCookie } from "@/pages/user/utils";
+import { eraseCookie } from "@/common/utils";
 
 export interface User {
   username: string;
