@@ -57,12 +57,12 @@ export async function validateToken(req: NextRequest): Promise<boolean> {
     return false;
   }
   let token = null;
-  // try {
-  //   token = await redisClient.get(authToken);
-  // } catch (err) {
-  //   console.log("redis get error:", err);
-  // }
-  // console.log("token", token);
+  try {
+    token = await redisClient.get(authToken);
+  } catch (err) {
+    console.log("redis get error:", err);
+  }
+  console.log("token", token);
   if (token) {
     return true;
   } else {
@@ -78,7 +78,7 @@ export async function validateToken(req: NextRequest): Promise<boolean> {
       });
       console.log("user res", res.status);
       if (res.status == 200 && res.data.username) {
-        // await redisClient.set(authToken, res.data.username, 60 * 60 * 8);
+        await redisClient.set(authToken, res.data.username, 60 * 60 * 8);
         return true;
       }
       return false;
