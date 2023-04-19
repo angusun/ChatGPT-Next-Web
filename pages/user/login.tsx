@@ -87,7 +87,7 @@ export default function Login() {
                 value={loginParams.username}
                 className={styles.loginInput}
                 type="text"
-                onChange={(val) => {
+                onChange={(val: any) => {
                   console.log(val);
                   setLoginParams({
                     password: loginParams.password,
@@ -102,7 +102,7 @@ export default function Login() {
                 value={loginParams.password}
                 className={styles.loginInput}
                 type="password"
-                onChange={(val) => {
+                onChange={(val: any) => {
                   console.log(loginParams);
                   setLoginParams({
                     username: loginParams.username,
