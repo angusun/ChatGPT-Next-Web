@@ -5,6 +5,7 @@ import { Home } from "./components/home";
 import { getServerSideConfig } from "./config/server";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import Header from "./components/header";
 
 const serverConfig = getServerSideConfig();
 
@@ -16,6 +17,7 @@ export default async function App() {
   }
   return (
     <>
+      <Header></Header>
       <Home />
       {serverConfig?.isVercel && <Analytics />}
     </>

@@ -42,11 +42,11 @@ export default function Login() {
       });
       if (res.status === 200 && res.data.token) {
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem("user", JSON.stringify(res.data.user));
         setCookie("token", res.data.token, 1);
         window.location.href = "/";
       }
     } catch (error: any) {
-      console.log(error);
       if (error?.response?.status === 400) {
         showToast("用户名或密码错误");
       }
@@ -88,7 +88,6 @@ export default function Login() {
                 className={styles.loginInput}
                 type="text"
                 onChange={(val: any) => {
-                  console.log(val);
                   setLoginParams({
                     password: loginParams.password,
                     username: val.target.value,
@@ -103,7 +102,6 @@ export default function Login() {
                 className={styles.loginInput}
                 type="password"
                 onChange={(val: any) => {
-                  console.log(loginParams);
                   setLoginParams({
                     username: loginParams.username,
                     password: val.target.value,

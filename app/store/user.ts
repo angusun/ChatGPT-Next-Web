@@ -11,6 +11,7 @@ export interface User {
   email: string;
   avatar: string;
   role: string;
+  id: number;
 }
 
 export interface LoginParams {
@@ -34,7 +35,16 @@ export const useUserStore = create<UserControlStore>()(
       async getInfo() {
         const userStr = localStorage.getItem("user");
         if (userStr) {
-          set(() => ({ user: JSON.parse(userStr) }));
+          const user = JSON.parse(userStr) as User;
+          // @ts-ignore
+          const rchDot = window["rch_dot"];
+          try {
+            console.log("[Bury Data]:login", user.id);
+            rchDot.login(user.id);
+          } catch (error) {
+            console.log("[Bury Data]", error);
+          }
+          set(() => ({ user: user }));
         }
         // if (fetchState > 0) return;
         // fetchState = 1;

@@ -1,3 +1,4 @@
+"use client";
 import { useDebounce, useDebouncedCallback } from "use-debounce";
 import { memo, useState, useRef, useEffect, useLayoutEffect } from "react";
 
@@ -518,6 +519,9 @@ export function Chat(props: {
       return;
     }
     if (shouldSubmit(e)) {
+      // @ts-ignore
+      const rchDot = window.rch_dot;
+      rchDot.track("click", `SENDQUESTION:ENTER`);
       onUserSubmit();
       e.preventDefault();
     }

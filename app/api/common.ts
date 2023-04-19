@@ -10,7 +10,6 @@ export async function requestOpenai(req: NextRequest) {
   const openaiPath = req.headers.get("path");
 
   console.log("[Proxy] ", openaiPath);
-  console.log("requestOpenai", req.body);
 
   return fetch(`${PROTOCOL}://${BASE_URL}/${openaiPath}`, {
     headers: {
@@ -24,12 +23,10 @@ export async function requestOpenai(req: NextRequest) {
 
 export async function validateToken(req: NextRequest): Promise<boolean> {
   const authToken = req.headers.get("authorization")?.replace("Bearer ", "");
-  console.log(authToken, "notoken");
   if (!authToken) {
     return false;
   }
   let token = null;
-  console.log("token", token);
   if (token) {
     return true;
   } else {
@@ -42,13 +39,12 @@ export async function validateToken(req: NextRequest): Promise<boolean> {
           Authorization: `Bearer ${authToken}`,
         },
       });
-      console.log("user res", res);
       if (res.status == 200) {
         return true;
       }
       return false;
     } catch (err) {
-      console.log("error:", err);
+      console.log("NetWork Error", err);
       return false;
     }
   }

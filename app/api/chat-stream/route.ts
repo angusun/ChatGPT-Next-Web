@@ -51,8 +51,6 @@ async function createStream(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    console.log("[PSOT======================]", req.body);
-
     const valid = await validateToken(req);
     if (!valid) {
       return NextResponse.json(

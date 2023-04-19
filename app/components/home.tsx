@@ -35,6 +35,8 @@ export function Loading(props: { noLogo?: boolean }) {
   );
 }
 
+// const DynamicComponent = dynamic(() => import("./vconsole"), { ssr: false });
+
 const Settings = dynamic(async () => (await import("./settings")).Settings, {
   loading: () => <Loading noLogo />,
 });
@@ -135,7 +137,6 @@ const useInitUser = () => {
   const [user, getInfo] = useUserStore((state) => [state.user, state.getInfo]);
   useEffect(() => {
     if (user.username) {
-      console.log("页面初始化，获取User", user);
       return;
     }
     getInfo();
@@ -253,6 +254,7 @@ function _Home() {
             sideBarShowing={showSideBar}
           />
         )}
+        {/* <DynamicComponent></DynamicComponent> */}
       </div>
     </div>
   );

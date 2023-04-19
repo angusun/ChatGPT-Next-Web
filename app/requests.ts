@@ -70,7 +70,6 @@ export async function requestChat(messages: Message[]) {
 
   try {
     const response = (await res.json()) as ChatResponse;
-    console.log("response", response);
     return response;
   } catch (error) {
     console.error("[Request Chat] ", error, res.body);
@@ -96,7 +95,6 @@ export async function requestUsage() {
     requestOpenaiClient("dashboard/billing/subscription")(null, "GET"),
   ]);
   if (used?.status === 401) {
-    console.error("Unauthorized");
     localStorage.removeItem("token");
     window.location.href = "/user/login";
   }
@@ -142,8 +140,6 @@ export async function requestChatStream(
     filterBot: options?.filterBot,
   });
 
-  console.log("[Request] ", req);
-
   const controller = new AbortController();
   const reqTimeoutId = setTimeout(() => controller.abort(), TIME_OUT_MS);
 
@@ -159,6 +155,7 @@ export async function requestChatStream(
       body: JSON.stringify(req),
       signal: controller.signal,
     });
+
     clearTimeout(reqTimeoutId);
 
     let responseText = "";
@@ -197,7 +194,6 @@ export async function requestChatStream(
 
       finish();
     } else if (res.status === 401) {
-      console.error("Unauthorized");
       options?.onError(new Error("Unauthorized"), res.status);
       localStorage.removeItem("token");
       window.location.href = "/user/login";

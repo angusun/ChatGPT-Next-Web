@@ -954,7 +954,7 @@
   "resolved" "https://registry.npmjs.org/@babel/regjsgen/-/regjsgen-0.8.0.tgz"
   "version" "0.8.0"
 
-"@babel/runtime@^7.12.1", "@babel/runtime@^7.19.4", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.12.1", "@babel/runtime@^7.17.2", "@babel/runtime@^7.19.4", "@babel/runtime@^7.20.7", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   "integrity" "sha512-xwII0//EObnq89Ji5AKYQaRYiW/nZ3llSv29d49IuxPhKbtJoLP+9QUUZ4nVragQVtaVGeZrpB+ZtG/Pdy/POw=="
   "resolved" "https://registry.npmjs.org/@babel/runtime/-/runtime-7.21.0.tgz"
   "version" "7.21.0"
@@ -1919,12 +1919,22 @@
   "resolved" "https://registry.npmjs.org/convert-source-map/-/convert-source-map-1.9.0.tgz"
   "version" "1.9.0"
 
+"copy-text-to-clipboard@^3.0.1":
+  "integrity" "sha512-PFM6BnjLnOON/lB3ta/Jg7Ywsv+l9kQGD4TWDCSlRBGmqnnTM5MrDkhAFgw+8HZt0wW6Q2BBE4cmy9sq+s9Qng=="
+  "resolved" "https://registry.npmjs.org/copy-text-to-clipboard/-/copy-text-to-clipboard-3.1.0.tgz"
+  "version" "3.1.0"
+
 "core-js-compat@^3.25.1":
   "integrity" "sha512-QmchCua884D8wWskMX8tW5ydINzd8oSJVx38lx/pVkFGqztxt73GYre3pm/hyYq8bPf+MW5In4I/uRShFDsbrA=="
   "resolved" "https://registry.npmjs.org/core-js-compat/-/core-js-compat-3.29.1.tgz"
   "version" "3.29.1"
   dependencies:
     "browserslist" "^4.21.5"
+
+"core-js@^3.11.0":
+  "integrity" "sha512-ZNS5nbiSwDTq4hFosEDqm65izl2CWmLz0hARJMyNQBgkUZMIF51cQiMvIQKA6hvuaeWxQDP3hEedM1JZIgTldQ=="
+  "resolved" "https://registry.npmjs.org/core-js/-/core-js-3.30.1.tgz"
+  "version" "3.30.1"
 
 "cosmiconfig@^7.0.1":
   "integrity" "sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA=="
@@ -4035,6 +4045,11 @@
   "resolved" "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz"
   "version" "2.1.2"
 
+"mutation-observer@^1.0.3":
+  "integrity" "sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA=="
+  "resolved" "https://registry.npmjs.org/mutation-observer/-/mutation-observer-1.0.3.tgz"
+  "version" "1.0.3"
+
 "nanoid@^3.3.4":
   "integrity" "sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA=="
   "resolved" "https://registry.npmjs.org/nanoid/-/nanoid-3.3.6.tgz"
@@ -5226,6 +5241,16 @@
     "diff" "^5.0.0"
     "kleur" "^4.0.3"
     "sade" "^1.7.3"
+
+"vconsole@^3.15.0":
+  "integrity" "sha512-8hq7wabPcRucSWQyN7/1tthMawP9JPvM95zgtMHpPknMMMCKj+abpoK7P7oKK4B0qw58C24Mdvo9+raUdpHyVQ=="
+  "resolved" "https://registry.npmjs.org/vconsole/-/vconsole-3.15.0.tgz"
+  "version" "3.15.0"
+  dependencies:
+    "@babel/runtime" "^7.17.2"
+    "copy-text-to-clipboard" "^3.0.1"
+    "core-js" "^3.11.0"
+    "mutation-observer" "^1.0.3"
 
 "vfile-location@^4.0.0":
   "integrity" "sha512-YF23YMyASIIJXpktBa4vIGLJ5Gs88UB/XePgqPmTa7cDA+JeO3yclbpheQYCHjVHBn/yePzrXuygIL+xbvRYHw=="
