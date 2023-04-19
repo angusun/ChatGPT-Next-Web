@@ -46,6 +46,9 @@ export const useAccessStore = create<AccessControlStore>()(
         fetchState = 1;
         fetch("/api/config", {
           method: "post",
+          headers: {
+            authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
           body: null,
         })
           .then((res) => res.json())

@@ -1,0 +1,21 @@
+.container {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(135deg, #abdcff 10%, #0396ff 100%);
+}
+.loginBody {
+  margin-top: 20px;
+}
+.loginItem {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  span {
+    width: 60px;
+    margin-right: 10px;
+  }
+  .loginInput {
+    width: 50%;
+  }
+}

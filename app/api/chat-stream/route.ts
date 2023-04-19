@@ -1,6 +1,8 @@
 import { createParser } from "eventsource-parser";
-import { NextRequest } from "next/server";
-import { requestOpenai } from "../common";
+import { NextRequest, NextResponse } from "next/server";
+import { requestOpenai, validateToken } from "../common";
+// import jwt from "jsonwebtoken";
+// const jwtSecret = "mySecret";
 
 async function createStream(req: NextRequest) {
   const encoder = new TextEncoder();
@@ -49,6 +51,22 @@ async function createStream(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
+    console.log("[PSOT======================]", req.body);
+
+    const valid = await validateToken(req);
+    if (!valid) {
+      return NextResponse.json(
+        {
+          error: true,
+          needAccessCode: false,
+          msg: "请进行登录。",
+        },
+        {
+          status: 401,
+        },
+      );
+    }
+
     const stream = await createStream(req);
     return new Response(stream);
   } catch (error) {
@@ -60,5 +78,5 @@ export async function POST(req: NextRequest) {
 }
 
 export const config = {
-  runtime: "edge",
+  runtime: "nodejs",
 };

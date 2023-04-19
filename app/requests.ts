@@ -1,6 +1,7 @@
 import type { ChatRequest, ChatResponse } from "./api/openai/typing";
 import { Message, ModelConfig, useAccessStore, useChatStore } from "./store";
 import { showToast } from "./components/ui-lib";
+import { useUserStore } from "./store/user";
 
 const TIME_OUT_MS = 30000;
 
@@ -54,6 +55,7 @@ export function requestOpenaiClient(path: string) {
       method,
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         path,
         ...getHeaders(),
       },
@@ -68,6 +70,7 @@ export async function requestChat(messages: Message[]) {
 
   try {
     const response = (await res.json()) as ChatResponse;
+    console.log("response", response);
     return response;
   } catch (error) {
     console.error("[Request Chat] ", error, res.body);
@@ -92,7 +95,11 @@ export async function requestUsage() {
     )(null, "GET"),
     requestOpenaiClient("dashboard/billing/subscription")(null, "GET"),
   ]);
-
+  if (used?.status === 401) {
+    console.error("Unauthorized");
+    localStorage.removeItem("token");
+    window.location.href = "/user/login";
+  }
   const response = (await used.json()) as {
     total_usage?: number;
     error?: {
@@ -145,6 +152,7 @@ export async function requestChatStream(
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("token")}`,
         path: "v1/chat/completions",
         ...getHeaders(),
       },
@@ -171,11 +179,11 @@ export async function requestChatStream(
         const resTimeoutId = setTimeout(() => finish(), TIME_OUT_MS);
         const content = await reader?.read();
         clearTimeout(resTimeoutId);
-      
+
         if (!content || !content.value) {
           break;
         }
-      
+
         const text = decoder.decode(content.value, { stream: true });
         responseText += text;
 
@@ -191,6 +199,8 @@ export async function requestChatStream(
     } else if (res.status === 401) {
       console.error("Unauthorized");
       options?.onError(new Error("Unauthorized"), res.status);
+      localStorage.removeItem("token");
+      window.location.href = "/user/login";
     } else {
       console.error("Stream Error", res.body);
       options?.onError(new Error("Stream Error"), res.status);

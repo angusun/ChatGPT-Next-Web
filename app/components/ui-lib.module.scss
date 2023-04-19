@@ -180,3 +180,14 @@
     }
   }
 }
+
+// 当分辨率大于1800px时，使用下面的样式
+@media only screen and (min-width: 1800px) {
+  .modal-container {
+    width: 600px;
+
+    .modal-content {
+      max-height: 40vh;
+    }
+  }
+}

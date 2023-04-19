@@ -110,6 +110,51 @@ export function showModal(props: ModalProps) {
   root.render(<Modal {...props} onClose={closeModal}></Modal>);
 }
 
+interface ModalLoginProps {
+  title: string;
+  children?: JSX.Element;
+  actions?: JSX.Element[];
+  onClose?: () => void;
+}
+export function ModalLogin(props: ModalLoginProps) {
+  return (
+    <div className={styles["modal-container"]}>
+      <div className={styles["modal-header"]}>
+        <div className={styles["modal-title"]}>{props.title}</div>
+      </div>
+
+      <div className={styles["modal-content"]}>{props.children}</div>
+
+      <div className={styles["modal-footer"]}>
+        <div className={styles["modal-actions"]}>
+          {props.actions?.map((action, i) => (
+            <div key={i} className={styles["modal-action"]}>
+              {action}
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+export function showModalLogin(props: ModalLoginProps) {
+  const div = document.createElement("div");
+  div.className = "modal-mask";
+  document.body.appendChild(div);
+
+  const root = createRoot(div);
+  const closeModal = () => {};
+
+  div.onclick = (e) => {
+    if (e.target === div) {
+      closeModal();
+    }
+  };
+
+  root.render(<Modal {...props} onClose={closeModal}></Modal>);
+}
+
 export type ToastProps = {
   content: string;
   action?: {
@@ -173,5 +218,19 @@ export function Input(props: InputProps) {
       {...props}
       className={`${styles["input"]} ${props.className}`}
     ></textarea>
+  );
+}
+
+export type FormInputProps = React.HTMLProps<HTMLInputElement> & {
+  autoHeight?: boolean;
+  rows?: number;
+};
+
+export function FormInput(props: FormInputProps) {
+  return (
+    <input
+      {...props}
+      className={`${styles["input"]} ${props.className}`}
+    ></input>
   );
 }

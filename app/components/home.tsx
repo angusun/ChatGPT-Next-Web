@@ -24,6 +24,7 @@ import { Chat } from "./chat";
 import dynamic from "next/dynamic";
 import { REPO_URL } from "../constant";
 import { ErrorBoundary } from "./error";
+import { useUserStore } from "../store/user";
 
 export function Loading(props: { noLogo?: boolean }) {
   return (
@@ -130,6 +131,21 @@ const useHasHydrated = () => {
   return hasHydrated;
 };
 
+const useInitUser = () => {
+  const [user, login, getInfo] = useUserStore((state) => [
+    state.user,
+    state.login,
+    state.getInfo,
+  ]);
+  useEffect(() => {
+    if (user.username) {
+      console.log("页面初始化，获取User", user);
+      return;
+    }
+    getInfo();
+  }, []);
+};
+
 function _Home() {
   const [createNewSession, currentIndex, removeSession] = useChatStore(
     (state) => [
@@ -141,6 +157,7 @@ function _Home() {
   const chatStore = useChatStore();
   const loading = !useHasHydrated();
   const [showSideBar, setShowSideBar] = useState(true);
+  const [user] = useUserStore((state) => [state.user]);
 
   // setting
   const [openSettings, setOpenSettings] = useState(false);
@@ -150,6 +167,7 @@ function _Home() {
   const { onDragMouseDown } = useDragSideBar();
 
   useSwitchTheme();
+  useInitUser();
 
   if (loading) {
     return <Loading />;
@@ -245,6 +263,12 @@ function _Home() {
 }
 
 export function Home() {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      window.location.href = "/user/login";
+    }
+  }, []);
   return (
     <ErrorBoundary>
       <_Home></_Home>
