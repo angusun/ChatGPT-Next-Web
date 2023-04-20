@@ -10,6 +10,7 @@ import ClearIcon from "../icons/clear.svg";
 import EditIcon from "../icons/edit.svg";
 import EyeIcon from "../icons/eye.svg";
 import EyeOffIcon from "../icons/eye-off.svg";
+import LogoutIcon from "../icons/logout.svg";
 
 import { List, ListItem, Popover, showToast } from "./ui-lib";
 
@@ -33,6 +34,7 @@ import { SearchService, usePromptStore } from "../store/prompt";
 import { requestUsage } from "../requests";
 import { ErrorBoundary } from "./error";
 import { InputRange } from "./input-range";
+import { useUserStore } from "../store/user";
 
 function SettingItem(props: {
   title: string;
@@ -143,6 +145,8 @@ export function Settings(props: { closeSettings: () => void }) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const [user, logout] = useUserStore((state) => [state.user, state.logout]);
 
   return (
     <ErrorBoundary>
@@ -474,7 +478,8 @@ export function Settings(props: { closeSettings: () => void }) {
           </SettingItem>
         </List>
 
-        <List>
+        {/* 模型设置 */}
+        {/* <List>
           <SettingItem title={Locale.Settings.Model}>
             <select
               value={config.modelConfig.model}
@@ -553,6 +558,15 @@ export function Settings(props: { closeSettings: () => void }) {
                 );
               }}
             ></InputRange>
+          </SettingItem>
+        </List> */}
+        <List>
+          <SettingItem title={"登录状态"} subTitle={user?.username}>
+            <IconButton
+              icon={<LogoutIcon />}
+              text={"退出登录"}
+              onClick={() => logout()}
+            />
           </SettingItem>
         </List>
       </div>

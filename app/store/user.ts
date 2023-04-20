@@ -22,6 +22,7 @@ export interface LoginParams {
 export interface UserControlStore {
   user: User;
   getInfo: () => void;
+  logout: () => void;
 }
 
 export const ACCESS_KEY = "user-control";
@@ -32,6 +33,16 @@ export const useUserStore = create<UserControlStore>()(
   persist(
     (set, get) => ({
       user: {} as User,
+      async logout() {
+        localStorage.removeItem("user");
+        localStorage.removeItem("token");
+        eraseCookie("token");
+        if (process.browser) {
+          //Runs only on client side
+          // Router.push("/user/login");
+          window.location.href = "/user/login";
+        }
+      },
       async getInfo() {
         const userStr = localStorage.getItem("user");
         if (userStr) {
