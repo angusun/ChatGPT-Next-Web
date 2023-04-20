@@ -168,6 +168,10 @@ const cn = {
     Edit: "前置上下文和历史记忆",
     Add: "新增一条",
   },
+  Login: {
+    State: "登录状态",
+    Logout: "退出登录",
+  },
 };
 
 export type LocaleType = typeof cn;

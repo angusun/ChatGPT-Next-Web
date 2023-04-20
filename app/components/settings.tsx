@@ -561,10 +561,10 @@ export function Settings(props: { closeSettings: () => void }) {
           </SettingItem>
         </List> */}
         <List>
-          <SettingItem title={"登录状态"} subTitle={user?.username}>
+          <SettingItem title={Locale.Login.State} subTitle={user?.username}>
             <IconButton
               icon={<LogoutIcon />}
-              text={"退出登录"}
+              text={Locale.Login.Logout}
               onClick={() => logout()}
             />
           </SettingItem>

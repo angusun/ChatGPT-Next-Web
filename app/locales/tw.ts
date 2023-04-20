@@ -167,6 +167,10 @@ const tw: LocaleType = {
     Edit: "前置上下文和歷史記憶",
     Add: "新增壹條",
   },
+  Login: {
+    State: "狀態",
+    Logout: "登出",
+  },
 };
 
 export default tw;

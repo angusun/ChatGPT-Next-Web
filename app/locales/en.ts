@@ -173,6 +173,10 @@ const en: LocaleType = {
     Edit: "Contextual and Memory Prompts",
     Add: "Add One",
   },
+  Login: {
+    State: "Login State",
+    Logout: "Logout",
+  },
 };
 
 export default en;

@@ -176,6 +176,10 @@ const tr: LocaleType = {
     Edit: "Bağlamsal ve Bellek Komutları",
     Add: "Yeni Ekle",
   },
+  Login: {
+    State: "Giriş Durumu",
+    Logout: "Çıkış Yap",
+  },
 };
 
 export default tr;

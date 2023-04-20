@@ -176,6 +176,10 @@ const it: LocaleType = {
     Edit: "Prompt contestuali e di memoria",
     Add: "Aggiungi altro",
   },
+  Login: {
+    State: "Stato di accesso",
+    Logout: "Disconnettersi",
+  },
 };
 
 export default it;

@@ -175,6 +175,10 @@ const es: LocaleType = {
     Edit: "Contextual and Memory Prompts",
     Add: "Add One",
   },
+  Login: {
+    State: "Estado de inicio de sesión",
+    Logout: "Cerrar sesión",
+  },
 };
 
 export default es;

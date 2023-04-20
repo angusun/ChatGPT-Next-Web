@@ -175,6 +175,10 @@ const jp = {
     Edit: "前置コンテキストと履歴メモリ",
     Add: "新規追加",
   },
+  Login: {
+    State: "ログイン状態",
+    Logout: "ログアウト",
+  },
 };
 
 export type LocaleType = typeof jp;
